@@ -105,8 +105,8 @@ async function run() {
         app.delete("/comics/:id" ,async (req, res) => {
             const id = req.params.id ;
             const query = {_id : new ObjectId(id)};
-            const result = await comicsCollection.deleteOne(query)
-            res.send(result)
+            const results = await comicsCollection.deleteOne(query)
+            res.send(results)
         })
 
 
