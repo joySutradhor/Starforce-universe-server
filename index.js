@@ -57,14 +57,6 @@ async function run() {
             const result = await comicsCollection.find(query, options).toArray();
             res.send(result)
         })
-        // app.get("/search", async (req, res) => {
-        //     let query = {};
-        //     if (req.query?.email) {
-        //         query = { email: req.query.email }
-        //     }
-        //     const result = await comicsCollection.find(query).toArray();
-        //     res.send(result)
-        // })
 
         app.get("/search/:text", async (req, res) => {
             const text = req.params.text;
