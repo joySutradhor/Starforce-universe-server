@@ -88,8 +88,8 @@ async function run() {
         app.get("/ScienceFiction" , async(req, res) => {
             const query = {cetegory : "Science Fiction"} ;
             const data = comicsCollection.find(query)
-            const result = await data.toArray();
-            res.send(result)
+            const results = await data.toArray();
+            res.send(results)
         })
 
         
