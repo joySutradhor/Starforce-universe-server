@@ -27,7 +27,7 @@ const client = new MongoClient(uri, {
 async function run() {
     try {
         // Connect the client to the server	(optional starting in v4.7)
-        await client.connect();
+        // await client.connect();
         const database = client.db("starUniverse");
         const comicsCollection = database.collection("comicsCollections")
 
@@ -57,6 +57,21 @@ async function run() {
             const result = await comicsCollection.find(query, options).toArray();
             res.send(result)
         })
+        // app.get("/search", async (req, res) => {
+        //     let query = {};
+        //     if (req.query?.email) {
+        //         query = { email: req.query.email }
+        //     }
+        //     const result = await comicsCollection.find(query).toArray();
+        //     res.send(result)
+        // })
+
+        app.get("/search/:text", async (req, res) => {
+            const text = req.params.text;
+            const Alldata = await comicsCollection.find().toArray();
+            const result = Alldata.filter((data) => data.name.toLowerCase().includes(text.toLowerCase()));
+            res.send(result);
+          });
 
         app.get("/superHero" , async(req, res) => {
             const query = {cetegory : "SuperHero"} ;
